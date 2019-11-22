@@ -9,6 +9,7 @@ jobs:
           RAILS_ENV: test
       - image: postgres:9.5-alpine
         environment:
+          POSTGRES_DB: bet_api_test
           POSTGRES_PASSWORD: ""
     steps:
       - checkout
