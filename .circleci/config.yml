@@ -46,6 +46,6 @@ jobs:
 
       # Run rubocop
       - run: bundle exec rubocop
-        -
+
       # Run the tests
       - run: bundle exec rake
