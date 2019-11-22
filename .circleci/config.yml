@@ -7,7 +7,7 @@ jobs:
       - image: circleci/ruby:2.6.4
         environment:
           RAILS_ENV: test
-      - image: postgres:12.1
+      - image: postgres:9.5-alpine
         environment:
           POSTGRES_PASSWORD: ""
     steps:
