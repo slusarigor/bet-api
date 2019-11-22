@@ -13,6 +13,12 @@ jobs:
     steps:
       - checkout
 
+      # Setup bundler 2+
+      - run:
+          name: setup bundler
+          command: |
+            gem install bundler
+
       # Restore Cached Dependencies
       - type: cache-restore
         name: Restore bundle cache
