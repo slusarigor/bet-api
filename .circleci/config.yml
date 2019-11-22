@@ -2,6 +2,7 @@
 version: 2
 jobs:
   build:
+    working_directory: ~/bet-api
     docker:
       - image: circleci/ruby:2.6.4
         environment:
