@@ -38,14 +38,40 @@ jobs:
         paths:
           - vendor/bundle
 
-      # Wait for DB
       - run: dockerize -wait tcp://localhost:5432 -timeout 1m
 
-      # Setup the database
       - run: bundle exec rake db:setup
 
-      # Run rubocop
       - run: bundle exec rubocop
 
-      # Run the tests
-      - run: bundle exec rspec
+      - run:
+          name: Rubycritic
+          command: bundle exec rubycritic ./app -p /tmp/rubycritic -f json -f html --no-browser
+
+      - store_artifacts:
+          path: /tmp/rubycritic
+
+      - run:
+          name: Brakeman
+          command: |
+            mkdir /tmp/brakeman
+            bundle exec brakeman --no-exit-on-warn -o /tmp/brakeman/output.json
+
+      - store_artifacts:
+          path: /tmp/brakeman
+
+      - run:
+          name: RSpec
+          command: |
+            mkdir /tmp/test-results
+            TEST_FILES="$(circleci tests glob "spec/**/*_spec.rb" | \
+              circleci tests split --split-by=timings)"
+            bundle exec rspec \
+              --format progress \
+              --format RspecJunitFormatter \
+              --out /tmp/test-results/rspec.xml \
+              --format progress \
+              $TEST_FILES
+
+      - store_test_results:
+          path: /tmp/test-results
