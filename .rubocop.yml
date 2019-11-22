@@ -5,6 +5,7 @@ AllCops:
     - bin/*
     - 'Gemfile'
     - 'Gemfile.lock'
+    - vendor/bundle/**/*
 
 Style/Documentation:
   Enabled: false
