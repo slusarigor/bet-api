@@ -1,0 +1,28 @@
+AllCops:
+  Exclude:
+    - db/migrate/*
+    - db/schema.rb
+    - bin/*
+    - 'Gemfile'
+    - 'Gemfile.lock'
+    - vendor/bundle/**/*
+
+Style/Documentation:
+  Enabled: false
+
+Metrics/LineLength:
+  Max: 120
+
+Metrics/MethodLength:
+  Max: 15
+
+Layout/AlignHash:
+  EnforcedColonStyle: table
+  EnforcedHashRocketStyle: table
+
+Metrics/BlockLength:
+  ExcludedMethods: [
+    'describe', 'xdescribe', 'context', 'xcontext', 'it', 'xit', 'get', 'post', 'put', 'FactoryBot.define',
+    'factory', 'let', 'before', 'after', 'configure',  'resource', 'aggregate_failures', 'draw', 'collection',
+    'example'
+  ]

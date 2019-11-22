@@ -44,5 +44,8 @@ jobs:
       # Setup the database
       - run: bundle exec rake db:setup
 
+      # Run rubocop
+      - run: bundle exec rubocop
+
       # Run the tests
       - run: bundle exec rake
